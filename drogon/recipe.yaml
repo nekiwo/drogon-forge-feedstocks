@@ -1,0 +1,44 @@
+context:
+  name: drogon
+  version: 1.9.13
+
+package:
+  name: ${{name}}
+  version: ${{version}}
+
+source:
+  git: https://github.com/drogonframework/drogon.git
+
+build:
+  number: 0
+  script:
+    - cmake ${CMAKE_ARGS}
+    - make
+    - make install
+
+requirements:
+  build:
+    - ${{compiler('cxx')}}
+    - cmake
+    - make
+  host:
+    - jsoncpp
+    - libuuid
+    - zlib
+  run:
+    - jsoncpp
+    - libuuid
+    - zlib
+
+about:
+  homepage: https://github.com/drogonframework/drogon
+  license: MIT
+  license_file: LICENSE
+  summary: A C++ HTTP web framework.
+  description: A C++14/17/20 based HTTP web application framework running on Linux/macOS/Unix/Windows 
+  documentation: https://drogonframework.github.io/drogon-docs
+  repository: https://github.com/drogonframework/drogon
+
+extra:
+  recipe-maintainers:
+    - nekiwo
